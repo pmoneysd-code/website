@@ -1,0 +1,91 @@
+:root {
+  --purple: #1678bd;
+  --pink: #ef5b94;
+  --yellow: #ffd85b;
+  --ink: #093c67;
+  --paper: #f9feff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  align-items: center;
+  background: radial-gradient(circle at 12% 15%, #ffe581 0 3%, transparent 3.5%),
+    radial-gradient(circle at 87% 78%, #ff9fca 0 4%, transparent 4.5%),
+    radial-gradient(circle at 74% 13%, #fff 0 2.5%, transparent 3%),
+    linear-gradient(160deg, #5dd4ed 0%, #95e5ef 52%, #ffe48d 52%, #fff2bb 100%);
+  color: var(--ink);
+  display: flex;
+  font-family: "Fredoka", "Comic Sans MS", sans-serif;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.game-card {
+  background: var(--paper);
+  border: 5px solid white;
+  border-radius: 32px;
+  box-shadow: 0 14px 0 rgba(76, 45, 134, .18), 0 22px 35px rgba(76, 45, 134, .25);
+  max-width: 520px;
+  padding: 26px;
+  text-align: center;
+  width: 100%;
+}
+
+.sparkles { color: var(--yellow); font-size: 1.3rem; letter-spacing: .2rem; margin: 0; }
+h1 { font-size: clamp(2rem, 8vw, 3.25rem); line-height: 1; margin: 8px 0 0; }
+h1 span { color: var(--pink); }
+.subtitle { color: var(--purple); font-size: 1.25rem; font-weight: 600; margin: 8px 0 20px; }
+
+.scoreboard { display: flex; gap: 12px; justify-content: center; margin-bottom: 18px; }
+.score { border-radius: 18px; flex: 1; max-width: 180px; padding: 10px; }
+.penny-score { background: #d9f4ff; }
+.sophia-score { background: #ffe3ef; }
+.score span, .score small { display: block; }
+.score span { font-weight: 600; }
+.score strong { font-size: 2rem; line-height: 1; }
+.score small { color: #705f91; margin-top: 3px; }
+
+.message { font-size: 1.15rem; font-weight: 600; margin: 4px 0 15px; min-height: 28px; }
+.board { display: grid; gap: 9px; grid-template-columns: repeat(3, 1fr); margin: auto; max-width: 390px; }
+.square { 
+  aspect-ratio: 1;
+  background: #e9f9ff;
+  border: 0;
+  border-radius: 20px;
+  color: var(--purple);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: clamp(3rem, 16vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1;
+  transition: transform .15s, background .15s;
+}
+.square:hover:not(:disabled) { background: #cbedfa; transform: translateY(-3px); }
+.square:focus-visible { outline: 4px solid var(--yellow); outline-offset: 2px; }
+.square.x { background: #d2f2ff; }
+.square.o { background: #ffe0ee; }
+.square.winner { background: var(--yellow); transform: scale(1.04); }
+
+.stitch-token { display: inline-block; height: 58%; position: relative; vertical-align: middle; width: 72%; }
+.stitch-face { align-items: center; background: #4caee1; border: 3px solid #116d9f; border-radius: 46% 46% 42% 42%; display: flex; flex-direction: column; height: 80%; justify-content: center; left: 10%; position: absolute; top: 10%; width: 80%; z-index: 2; }
+.stitch-ear { background: #4caee1; border: 3px solid #116d9f; border-radius: 80% 15% 80% 15%; height: 40%; position: absolute; top: 20%; width: 50%; }
+.stitch-ear.left { left: -3%; transform: rotate(-28deg); }
+.stitch-ear.right { right: -3%; transform: scaleX(-1) rotate(-28deg); }
+.stitch-eyes { color: #172d51; font-size: clamp(.9rem, 4vw, 1.4rem); letter-spacing: .1em; line-height: .65; }
+.stitch-nose { color: #172d51; font-size: clamp(.7rem, 3vw, 1rem); line-height: .75; }
+
+.play-again { background: var(--purple); border: 0; border-radius: 999px; box-shadow: 0 5px 0 #5034a1; color: white; cursor: pointer; font: 600 1.1rem inherit; margin-top: 24px; padding: 13px 27px; }
+.play-again:hover { background: #6646c1; }
+.play-again:active { box-shadow: none; transform: translateY(5px); }
+.reset-scores { background: transparent; border: 0; color: var(--purple); cursor: pointer; display: block; font: 600 .95rem inherit; margin: 16px auto 0; text-decoration: underline; }
+.reset-scores:hover { color: var(--pink); }
+.how-to { color: #705f91; font-size: .94rem; margin: 20px 0 0; }
+
+@media (max-width: 390px) {
+  body { padding: 12px; }
+  .game-card { border-radius: 25px; padding: 18px; }
+  .square { border-radius: 15px; }
+}

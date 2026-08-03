@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A beachy Stitch tic-tac-toe game for Penny and Sophia." />
+    <title>Penny & Sophia's Stitch Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-card">
+      <p class="sparkles" aria-hidden="true">🌺 ✦ 🌊 ✦ 🛸</p>
+      <h1>Penny <span>&amp;</span> Sophia</h1>
+      <p class="subtitle">Stitch vs. Unicorn Tic-Tac-Toe!</p>
+
+      <section class="scoreboard" aria-label="Scoreboard">
+        <div class="score penny-score">
+          <span>💙 Penny as Stitch</span>
+          <strong id="x-score">0</strong>
+          <small>blue space friend</small>
+        </div>
+        <div class="score sophia-score">
+          <span>🦄 Sophia's Unicorn</span>
+          <strong id="o-score">0</strong>
+          <small>sparkly unicorn</small>
+        </div>
+      </section>
+
+      <p class="message" id="message" aria-live="polite">Penny as Stitch goes first — aloha!</p>
+
+      <div class="board" id="board" aria-label="Tic-tac-toe board">
+        <button class="square" aria-label="Top left square"></button>
+        <button class="square" aria-label="Top middle square"></button>
+        <button class="square" aria-label="Top right square"></button>
+        <button class="square" aria-label="Middle left square"></button>
+        <button class="square" aria-label="Middle square"></button>
+        <button class="square" aria-label="Middle right square"></button>
+        <button class="square" aria-label="Bottom left square"></button>
+        <button class="square" aria-label="Bottom middle square"></button>
+        <button class="square" aria-label="Bottom right square"></button>
+      </div>
+
+      <button class="play-again" id="restart-button" type="button">Play Again ↻</button>
+      <button class="reset-scores" id="reset-scores-button" type="button">Start Over: 0 – 0</button>
+      <p class="how-to">Take turns placing Stitch and unicorns. Get 3 in a row to win!</p>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
