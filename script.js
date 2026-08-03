@@ -187,6 +187,6 @@ signInAnonymously(auth)
     userId = userCredential.user.uid;
     onlineStatus.textContent = 'Ready! Make a code to invite Grampa.';
   })
-  .catch(() => onlineStatus.textContent = 'Ask a grown-up to finish turning on Anonymous sign-in in Firebase.');
+  .catch(error => onlineStatus.textContent = `Firebase says: ${error.code}. Tell Codex this blue message.`);
 
 render();
