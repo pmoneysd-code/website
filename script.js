@@ -176,9 +176,11 @@ async function resetScores() {
   }
 }
 
-squares.forEach((square, index) => square.addEventListener('click', () => playSquare(index)));
-restartButton.addEventListener('click', startNewGame);
-resetScoresButton.addEventListener('click', resetScores);
+squares.forEach((square, index) => square.addEventListener('click', () => {
+  playSquare(index).catch(error => onlineStatus.textContent = `Move problem: ${error.code || error.message}. Tell Codex this message.`);
+}));
+restartButton.addEventListener('click', () => startNewGame().catch(error => onlineStatus.textContent = `New game problem: ${error.code || error.message}`));
+resetScoresButton.addEventListener('click', () => resetScores().catch(error => onlineStatus.textContent = `Reset problem: ${error.code || error.message}`));
 createRoomButton.addEventListener('click', () => createRoom().catch(error => onlineStatus.textContent = error.message));
 joinRoomButton.addEventListener('click', () => joinRoom().catch(error => onlineStatus.textContent = error.message));
 
