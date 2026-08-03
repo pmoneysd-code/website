@@ -16,6 +16,16 @@
       <h1>Penny <span>&amp;</span> Grampa</h1>
       <p class="subtitle">Stitch vs. Unicorn Tic-Tac-Toe!</p>
 
+      <section class="online-panel" aria-label="Play online">
+        <h2>Play from two places</h2>
+        <button class="make-room" id="create-room-button" type="button">Make a game code</button>
+        <div class="join-room">
+          <input id="room-code-input" maxlength="8" placeholder="Type Grampa's code" aria-label="Game code" />
+          <button id="join-room-button" type="button">Join</button>
+        </div>
+        <p class="online-status" id="online-status" aria-live="polite">Make a code, then tell it to Grampa!</p>
+      </section>
+
       <section class="scoreboard" aria-label="Scoreboard">
         <div class="score penny-score">
           <span>💙 Penny as Stitch</span>
@@ -47,6 +57,6 @@
       <button class="reset-scores" id="reset-scores-button" type="button">Start Over: 0 – 0</button>
       <p class="how-to">Take turns placing Stitch and unicorns. Get 3 in a row to win!</p>
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
