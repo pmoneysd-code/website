@@ -31,6 +31,7 @@ const winningRows = [
   [0, 1, 2], [3, 4, 5], [6, 7, 8],
   [0, 3, 6], [1, 4, 7], [2, 5, 8]
 ];
+const ROOM_CODE = 'GRAMPA';
 
 let userId = null;
 let roomCode = null;
@@ -96,11 +97,6 @@ function render() {
   else message.textContent = `${playerName(game.currentPlayer)}'s turn — pick a square!`;
 }
 
-function makeRoomCode() {
-  const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  return Array.from({ length: 7 }, () => letters[Math.floor(Math.random() * letters.length)]).join('');
-}
-
 function listenToRoom() {
   stopListening?.();
   stopListening = onValue(ref(database, `rooms/${roomCode}/game`), snapshot => {
@@ -113,26 +109,18 @@ function listenToRoom() {
 
 async function createRoom() {
   if (!userId) return;
-  onlineStatus.textContent = 'Making your game code...';
-  for (let tries = 0; tries < 5; tries++) {
-    const code = makeRoomCode();
-    const roomRef = ref(database, `rooms/${code}`);
-    const result = await runTransaction(roomRef, current => current || { game: newGame(), players: { X: userId }, madeAt: Date.now() });
-    if (result.committed) {
-      roomCode = code;
-      playerRole = 'X';
-      roomCodeInput.value = code;
-      onlineStatus.textContent = `Your code is ${code}. Tell it to Grampa!`;
-      listenToRoom();
-      return;
-    }
-  }
-  onlineStatus.textContent = 'Please try making the code again.';
+  onlineStatus.textContent = "Starting Grampa's game...";
+  const roomRef = ref(database, `rooms/${ROOM_CODE}`);
+  await runTransaction(roomRef, () => ({ game: newGame(), players: { X: userId }, madeAt: Date.now() }));
+  roomCode = ROOM_CODE;
+  playerRole = 'X';
+  onlineStatus.textContent = "Grampa's game is ready! Grampa can press Join on his phone.";
+  listenToRoom();
 }
 
 async function joinRoom() {
-  const code = roomCodeInput.value.trim().toUpperCase();
-  if (!userId || !code) return onlineStatus.textContent = 'Type Grampa’s game code first.';
+  const code = ROOM_CODE;
+  if (!userId) return;
   const roomRef = ref(database, `rooms/${code}`);
   const room = await get(roomRef);
   if (!room.exists()) return onlineStatus.textContent = 'That code was not found. Check it and try again.';
@@ -187,7 +175,7 @@ joinRoomButton.addEventListener('click', () => joinRoom().catch(error => onlineS
 signInAnonymously(auth)
   .then(userCredential => {
     userId = userCredential.user.uid;
-    onlineStatus.textContent = 'Ready! Make a code to invite Grampa.';
+    onlineStatus.textContent = "Ready! Penny can start Grampa's game.";
   })
   .catch(error => onlineStatus.textContent = `Firebase says: ${error.code}. Tell Codex this blue message.`);
 
