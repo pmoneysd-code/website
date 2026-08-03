@@ -42,7 +42,7 @@ h1 span { color: var(--pink); }
 .scoreboard { display: flex; gap: 12px; justify-content: center; margin-bottom: 18px; }
 .score { border-radius: 18px; flex: 1; max-width: 180px; padding: 10px; }
 .penny-score { background: #d9f4ff; }
-.sophia-score { background: #ffe3ef; }
+.grampa-score { background: #ffe3ef; }
 .score span, .score small { display: block; }
 .score span { font-weight: 600; }
 .score strong { font-size: 2rem; line-height: 1; }

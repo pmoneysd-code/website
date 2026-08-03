@@ -17,7 +17,7 @@ let gameOver = false;
 let scores = { X: 0, O: 0 };
 
 function playerName(player) {
-  return player === 'X' ? 'Penny as Stitch' : "Sophia's unicorn";
+  return player === 'X' ? 'Penny as Stitch' : "Grampa's unicorn";
 }
 
 function playerMarkup(player) {
